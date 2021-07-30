@@ -1,4 +1,4 @@
-# What Does This Do?
+# Deletion-Bot
 
 It deletes most mentions of Genshin Impact, ranging from names of characters to some NPC names.
 Examples are words such as Primogems, Kazuha, Ganyu.

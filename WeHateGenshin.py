@@ -1,11 +1,17 @@
+import os
 import discord
 import re
 import math
 from discord.client import _ClientEventTask
 from discord.ext import commands
-import keyboard
 import asyncio
-from discord.ext import commands  
+from discord.ext import commands 
+from discord.ext.commands import check, Context, has_permissions, CheckFailure
+
+from keep_alive import keep_alive 
+
+my_secret = os.environ['TOKEN']
+
 client = discord.Client()
 
 
@@ -16,38 +22,38 @@ client = discord.Client()
 #words_list = words.split()
 #print(words_list)
 
-genshin = ['genshin','dvalin','kazuha','prettycrazycatlady', 'hypostasis', 'prettycrazycatlady', 'dainsleif', 'yae', 'aether', 'lumine', 'resin', '5star roll', 'banner', 'genshin', 'ganyu', 'hutao', 'venti', 'bennett', 'xingqui', 'zhongli', 'albedo', 'ayaka', 'klee', 'jean', 'diluc', 'yanfei', 'eula', 'mona', 'tartaglia', 'xiao', 'diona', 'sucrose', 'keqing', 'ningguang', 'razor', 'fischl', 'barbara', 'beidou', 'chongyun', 'kaeya', 'noelle', 'rosaria', 'qiqi', 'xiangling', 'xinyan', 'lisa', 'traveller', 'anemo', 'geo', 'amber', 'adeptusbridges', 'adventurerank', 'adventurerhandbook', 'aerosiderite', 'agnidusagate', 'alchemy', 'allogenes', 'amberrock', 'amenomaart', 'rime', 'anemograna', 'archon', 'quests', 'commision', 'commissions', 'cyno', 'yaoyao', 'lyney', 'lynette', 'yunjin', 'iansan', 'dottore', 'pulcinella', 'yoimiya', 'miko', 'aloy', 'kate', 'shenhe', 'shenli', 'collei', 'signora', 'baizhu', 'daipai', 'daler', 'dalong', 'dandan', 'dandy', 'darknight', 'hero', 'davy', 'degui', 'domon', 'dongdong', 'dongsheng', 'donna', 'doolan', 'dr.edith', 'dr.livingstone', 'dr', 'livingstone', 'dugu', 'shuo', 'durin', 'dusky', 'ming', 'dvalin', 'ebina', 'gonshirou', 'echo', 'edna', 'ekaterina', 'ella', 'musk', 'ellin', 'elzer', 'erge', 'eroch', 'esther', 'eury', 'fan', 'farrah', 'fei', 'the', 'flyer', 'felix', 'fengyan', 'ferrylady', 'flagpolecheng', 'flash-fistling', 'flora', 'francis', 'freckle', 'huang', 'frederica', 'gunnhildr', 'freki', 'fritz', 'fugui', 'fujiwara', 'toshiko', 'furong', 'furuta', 'furuya', 'noboru', 'futaba', 'gaiman', 'gaofei', 'gaothesixth', 'gendou', 'ringo', 'gentryde', 'gentrymaocai', 'genzou', 'xingqui']
+genshin = ['genshin','dvalin','kazuha','prettycrazycatlady', 'hypostasis', 'prettycrazycatlady', 'dainsleif', 'yae', 'aether', 'lumine', 'resin', '5star roll', 'banner', 'genshin', 'ganyu', 'hutao', 'venti', 'bennett', 'xingqui', 'zhongli', 'albedo', 'ayaka', 'klee', 'jean', 'diluc', 'yanfei', 'eula', 'mona', 'tartaglia', 'xiao', 'diona', 'sucrose', 'keqing', 'ningguang', 'razor', 'fischl', 'beidou', 'chongyun',  'noelle', 'rosaria', 'qiqi', 'xiangling', 'xinyan', 'lisa', 'traveller', 'anemo', 'geo', 'amber', 'furong', 'noboru', 'futaba', 'gaiman', 'xingqui','primogem', 'primogems']
+
 client = discord.Client()
 
 
+ids = ['434885992172748808']
 
+
+client = commands.Bot(command_prefix = '.')
 
 
 @client.event
 async def on_ready():
     print(f'{client.user} has connected to Discord!')
-    print("Ready to delete genshin impact words.")
+    print("Bot Status: Active")
 @client.event
 async def on_message(message):
-
-
-  print(genshin)
-  if message.author == client.user:
-    return
-
-  while True:
-    if any(word in message.content.lower() for word in genshin):
+      if message.author.id == 434885992172748808:
+        print("User Immune")
+      
+      elif any(word in message.content.lower() for word in genshin):
         await message.delete()
         await message.channel.send('https://cdn.discordapp.com/attachments/749285588703903775/864098290785583104/wda.jpg')
-    else:
+        await message.channel.send ('Have a problem with a blacklisted word? Request a pull here: https://github.com/Vexxo/Deletion-Bot')
+      else:
         await client.process_commands(message)
+  
 
 
 
 
-    
 
+keep_alive()
 
-
-
-client.run('token')
+client.run(os.getenv('TOKEN'))

@@ -44,7 +44,7 @@ async def on_message(message):
       
       elif any(word in message.content.lower() for word in genshin):
         await message.delete()
-        await message.channel.send('https://cdn.discordapp.com/attachments/749285588703903775/864098290785583104/wda.jpg')
+        await message.channel.send('Do not say that!')
         await message.channel.send ('Have a problem with a blacklisted word? Request a pull here: https://github.com/Vexxo/Deletion-Bot')
       else:
         await client.process_commands(message)

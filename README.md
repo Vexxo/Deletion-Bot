@@ -1,6 +1,6 @@
 # Deletion-Bot
 
-It deletes most mentions of Genshin Impact, ranging from names of characters to some NPC names.
+Deletion Bot is a discord bot thatdeletes most mentions of Genshin Impact, ranging from names of characters to some NPC names.
 Examples are words such as Primogems, Kazuha, Ganyu.
 You may edit the list of words to ban words of your choice.
 
